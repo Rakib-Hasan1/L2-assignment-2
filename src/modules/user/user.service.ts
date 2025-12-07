@@ -10,11 +10,27 @@ const getSingleUser = async (id: string) => {
   return result;
 };
 
-const updateUser = async() => {
-  
-}
+const updateUser = async (payload: Record<string, unknown>, id: string) => {
+  const keys = Object.keys(payload);
+  const setParams = keys.map((key, index) => `${key}=$${index + 1}`).join(", ");
+  const values = Object.values(payload);
+
+  if (keys.length === 0) {
+    throw new Error("No fields provided to update");
+  }
+
+  console.log(keys, setParams, values);
+  const result = await pool.query(
+    `
+    UPDATE users SET ${setParams} WHERE id=$${keys.length + 1} RETURNING *
+    `,
+    [...values, id]
+  );
+  return result;
+};
 
 export const userServices = {
   getUser,
   getSingleUser,
+  updateUser,
 };

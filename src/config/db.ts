@@ -23,7 +23,7 @@ export const initDB = async () => {
         vehicle_name TEXT NOT NULL,
         type TEXT NOT NULL, -- e.g. car, bike, truck
         registration_number TEXT NOT NULL UNIQUE,
-        daily_rent_price NUMERIC(10,2) NOT NULL CHECK (daily_rent_price = 5000),
+        daily_rent_price INT NOT NULL CHECK (daily_rent_price > 0),
         availability_status TEXT NOT NULL CHECK (availability_status IN ('available', 'booked'))
         )
         `);

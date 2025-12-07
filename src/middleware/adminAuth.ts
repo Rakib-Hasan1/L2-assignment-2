@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import config from "../config";
 
-const auth = () => {
+const adminOnly = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const token = req.headers.authorization;
@@ -16,7 +16,6 @@ const auth = () => {
         token,
         config.jwtsecret as string
       ) as JwtPayload;
-      console.log({ decoded });
       req.user = decoded;
       if (!decoded || decoded.role !== "admin") {
         res.status(500).json({
@@ -35,4 +34,4 @@ const auth = () => {
   };
 };
 
-export default auth;
+export default adminOnly;

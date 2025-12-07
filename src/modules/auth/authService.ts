@@ -51,7 +51,6 @@ const signin = async (email: string, password: string) => {
     }
   );
 
-  console.log({ token });
   return { token, user };
 };
 
