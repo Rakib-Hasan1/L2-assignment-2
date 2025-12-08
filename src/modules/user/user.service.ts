@@ -1,7 +1,7 @@
 import { pool } from "../../config/db";
 
 const getUser = async () => {
-  const result = await pool.query(`SELECT * FROM users`);
+  const result = await pool.query(`SELECT id, name, email, phone, role FROM users`);
   return result;
 };
 
@@ -19,7 +19,6 @@ const updateUser = async (payload: Record<string, unknown>, id: string) => {
     throw new Error("No fields provided to update");
   }
 
-  console.log(keys, setParams, values);
   const result = await pool.query(
     `
     UPDATE users SET ${setParams} WHERE id=$${keys.length + 1} RETURNING *

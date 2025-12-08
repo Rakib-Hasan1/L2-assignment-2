@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { userServices } from "./user.service";
-import config from "../../config";
 
 const getUser = async (req: Request, res: Response) => {
   try {

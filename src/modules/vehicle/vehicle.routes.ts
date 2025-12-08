@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { vehicleControllers } from "./vehicle.controller";
 import adminOnly from "../../middleware/adminAuth";
+import canDeleteVehicle from "../../middleware/canDeleteVehicle";
 
 const router = Router();
 
@@ -12,6 +13,6 @@ router.get("/:vehicleId", vehicleControllers.getSingleVehicle);
 
 router.put("/:vehicleId", adminOnly(), vehicleControllers.updateVehicle);
 
-router.delete("/:vehicleId", adminOnly(), vehicleControllers.deleteVehicle);
+router.delete("/:vehicleId", adminOnly(), canDeleteVehicle(), vehicleControllers.deleteVehicle);
 
 export const vehicleRoutes = router;

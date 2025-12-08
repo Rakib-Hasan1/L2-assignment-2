@@ -15,9 +15,9 @@ const signup = async (payload: Record<string, unknown>) => {
              VALUES($1, $2, $3, $4, $5) RETURNING *`,
     [name, email, hashedPass, phone, role]
   );
+  delete result.rows[0].password;
   return result;
 };
-
 
 const signin = async (email: string, password: string) => {
   const result = await pool.query(`SELECT * FROM users WHERE email=$1`, [
@@ -33,6 +33,7 @@ const signin = async (email: string, password: string) => {
   if (!match) {
     return false;
   }
+  delete result.rows[0].password;
 
   const secret = config.jwtsecret as string;
   const token = jwt.sign(
@@ -54,5 +55,5 @@ const signin = async (email: string, password: string) => {
 
 export const authServices = {
   signup,
-  signin
+  signin,
 };
