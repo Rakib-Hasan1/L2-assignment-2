@@ -1,11 +1,13 @@
-# Vehicle Rental App 🚗
 
+# Vehicle Rental App 🚗
 Live URL: [https://vehicle-rent-one.vercel.app](https://vehicle-rent-one.vercel.app)
 
 ---
 
 ## 📖 Project Description
-A Back-end vehicle rental system where customers can see, book vehicles, cancel bookings, and admins can manage vehicles and bookings. Includes role-based authentication and automatic price calculation.
+A Back-end vehicle rental system where customers can see,
+book vehicles,cancel bookings, and admins can manage vehicles and bookings.
+Includes role-based authentication and automatic price calculation.
 
 ---
 
@@ -33,24 +35,30 @@ A Back-end vehicle rental system where customers can see, book vehicles, cancel 
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
+```
+git clone https://github.com/Rakib-Hasan1/L2-assignment-2.git
 
-git clone https://github.com/your-username/vehicle-rental-system.git
-cd vehicle-rental-system
+cd L2-assignment-2
+```
 
 ### 2. Install dependencies
 
+```
 npm install
+```
 
 ### 3. Configure environment variable
 
+```
 PORT=5000
 DATABASE_URL=your_postgres_connection_string
 JWTSECRET=your_jwt_secret
-
+```
 
 ### 4. Run the project locally
-
+```
 npm run dev
+```
 
 🚀 Usage Instructions
 
@@ -58,7 +66,7 @@ npm run dev
 - Example: Create Booking
 
 
-- POST /api/v1/bookings
+```bash- POST /api/v1/bookings
 Authorization: Bearer <jwt_token>
 Body:
 {
@@ -67,9 +75,10 @@ Body:
   "rent_start_date": "2024-01-15",
   "rent_end_date": "2024-01-20"
 }
-
+```
 Response:
 
+```
 {
   "success": true,
   "message": "Booking created successfully",
