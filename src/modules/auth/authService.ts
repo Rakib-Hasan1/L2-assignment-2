@@ -29,12 +29,10 @@ const signin = async (email: string, password: string) => {
   const user = result.rows[0];
 
   const match = await bcrypt.compare(password, user.password);
-  console.log({ match, user });
+
   if (!match) {
     return false;
   }
-
-  //   const { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } = user;
 
   const secret = config.jwtsecret as string;
   const token = jwt.sign(
